@@ -1,0 +1,149 @@
+<html>
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Dynamic Positioning, simple</title>
+
+  <style>body {
+  color: #fff;
+  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+  }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+#main {
+  width: 960px;
+  margin: 0 auto;
+  vertical-align: top;
+}
+h1 {
+  text-align: center;
+  font-size: 2em;
+  line-height: 2.3;
+  color:  #2db34a;
+  display: block;
+  width: 100%;
+  border: 1px solid  #2db34a;
+  border-radius: 6px;
+}
+.set {
+  vertical-align: top;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  width: 30%;
+  height: 100%;
+  border: 1px solid  #2db34a;
+  border-radius: 6px;
+}
+.set,
+.box {
+  position: relative;
+
+  border-radius: 6px;
+}
+#box-set1,
+#box-set2,
+#box-set3
+ {
+  background: #eaeaed;
+  height: 100%;
+  position: relative;
+}
+.box {
+  
+  background: #2db34a;
+  width: 200px;
+  height:  200px;
+  line-height:  9em;
+  position: absolute; 
+  text-align: center;
+  
+}
+.box-1 {
+  top:0;
+float: right;  
+/*//display: inline-block;*/
+  left: 0;
+}
+#box-set-2 .box-1 {
+  height: 100px;
+}
+#box-set-3 .box-1 {
+  height: 150px;
+}
+.box-2 {
+ left: 0;
+  bottom: 0;
+  height: 150px;
+}
+
+
+
+#box-set-2 .box-2 {
+  bottom: 0;
+}
+#box-set-3 .box-2{
+  bottom: 0;
+}
+</style>
+
+</head>
+
+<body >
+<div id="main" class="clearfix">
+  <h1> Resize Window to set dynamic height of boxes box2 </h1>
+  <div id="box-set-1" class="set clearfix">
+  <figure class="box box-1">Box 1 set 1</figure>
+  <figure class="box box-2">Box 2 set 1</figure>
+ <!--  <figure class="box box-3">Box 3</figure>
+  <figure class="box box-4">Box 4</figure> -->
+</div>
+  <div id="box-set-2" class="set clearfix">>
+  <figure class="box box-1">Box 1 set 2</figure>
+  <figure class="box box-2">Box 2 set 2</figure>
+ <!--  <figure class="box box-3">Box 3</figure>
+  <figure class="box box-4">Box 4</figure> -->
+</div>
+  <div id="box-set-3" class="set clearfix">>
+  <figure class="box box-1">Box 1 set 3</figure>
+  <figure class="box box-2">Box 2 set 3</figure>
+ <!--  <figure class="box box-3">Box 3</figure>
+  <figure class="box box-4">Box 4</figure> -->
+</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+  
+  var box = $(".box");//add
+  var box2 = $(".box-2");//a
+  var box1_ht = $(".box-1").height();//add 50px for dist from top
+  var set = $(".set");
+    $(window).resize( function(){
+      $(".set").each( function(index, elem) {
+       
+        $(this).find($(".box-2")).css('top', ($(this).find(".box-1").height()));
+
+        //$(elem).find(".box-2").css("top", $(elem).find($("box-1")).height());
+              
+     });
+    
+                   // alert("All Box 2 Tops will match height of box 1 on resize");
+
+    });
+
+});
+</script>
+</body>
+</html>
